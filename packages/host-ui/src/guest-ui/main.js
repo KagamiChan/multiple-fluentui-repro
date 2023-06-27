@@ -5493,6 +5493,9 @@ var renderGuestUI = function (root) {
 var unmountGuestUI = function (root) {
     react_dom.unmountComponentAtNode(root);
 };
+if (window.__IS_GUEST_UI__) {
+    renderGuestUI(document.getElementById("root"));
+}
 
 })();
 

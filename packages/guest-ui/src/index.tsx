@@ -21,3 +21,7 @@ export const renderGuestUI = (root: HTMLElement) => {
 export const unmountGuestUI = (root: HTMLElement) => {
   ReactDOM.unmountComponentAtNode(root);
 };
+
+if ((window  as any).__IS_GUEST_UI__) {
+  renderGuestUI(document.getElementById("root"));
+}
