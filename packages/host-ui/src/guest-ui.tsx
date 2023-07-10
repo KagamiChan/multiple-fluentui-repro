@@ -1,14 +1,12 @@
 import React from 'react'
 
-import { renderGuestUI, unmountGuestUI } from './guest-ui/main';
-
 export const GuestUI = () => {
   const rootRef = React.useRef<HTMLDivElement>();
 
   React.useEffect(() => {
-    renderGuestUI?.(rootRef.current);
+    (window as any).__renderGuestUI?.(rootRef.current);
     return () => {
-      unmountGuestUI?.(rootRef?.current);
+      (window as any).__unmountGuestUI?.(rootRef?.current);
     };
   }, []);
 

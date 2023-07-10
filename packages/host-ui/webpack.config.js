@@ -14,6 +14,9 @@ const config = {
     open: true,
     host: "localhost",
     port: 3000,
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
   },
   optimization: {
     minimize: false,

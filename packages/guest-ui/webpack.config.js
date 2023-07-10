@@ -8,11 +8,13 @@ const isProduction = process.env.NODE_ENV == "production";
 const config = {
   entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "../host-ui/src/guest-ui"),
+    path: path.resolve(__dirname, "../host-ui/public"),
+    filename: 'guest.js',
     library: {
       type: 'umd'
     },
   },
+  devtool: 'inline-source-map',
   devServer: {
     open: true,
     host: "localhost",
@@ -22,9 +24,6 @@ const config = {
     minimize: false,
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "index.html",
-    }),
 
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
