@@ -14,6 +14,10 @@ import {
   DialogContent,
 } from "@fluentui/react-components";
 
+import { compare } from 'compare-versions'
+
+import { getTabster } from "tabster";
+
 const App = () => {
   return (
     <IdPrefixProvider value="guest">
@@ -49,6 +53,13 @@ const App = () => {
 };
 
 export const renderGuestUI = (root: HTMLElement) => {
+  const tabster = getTabster(window);
+  if (compare((tabster as any).core._version ?? '9.9.9', '4.3.0', '<')) {
+    (tabster as any).core.queueInit = (callback: () => void) => setTimeout(callback, 0);
+    (tabster as any).core.drainInitQueue = () => {};
+    (tabster as any).core._dummyObserver.updatePositions = () => {};
+    console.log(tabster)
+  }
   ReactDOM.render(<App />, root);
 };
 export const unmountGuestUI = (root: HTMLElement) => {
